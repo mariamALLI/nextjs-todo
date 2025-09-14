@@ -62,7 +62,6 @@ const TodosList = () => {
   interface NewTodo {
     todo: string;
     completed?: boolean;
-    [key: string]: any;
   }
 
   const handleAddTodo = (newTodo: NewTodo): void => {

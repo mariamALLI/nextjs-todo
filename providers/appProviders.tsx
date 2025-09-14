@@ -41,7 +41,7 @@ function ErrorFallback({
         </h2>
         
         <p className="text-lg text-gray-600 mb-6 font-serif">
-          Don't worry, this happens sometimes. You can try refreshing the page or go back to the home page.
+          Don&apos;t worry, this happens sometimes. You can try refreshing the page or go back to the home page.
         </p>
 
         {/* Show error details only in development */}

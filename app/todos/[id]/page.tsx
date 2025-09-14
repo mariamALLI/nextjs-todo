@@ -106,7 +106,7 @@ const TodoDetails = () => {
   >({
     mutationFn: async (updatedTodo: UpdateTodoInput): Promise<Todo> => {
       if (!id) throw new Error("Todo ID is missing");
-      const todoId = parseInt(id);
+      const todoId = parseInt(Array.isArray(id) ? id[0] : id);
 
       try {
         if (isApiTodo(todoId)) {
@@ -222,9 +222,9 @@ const TodoDetails = () => {
             onClick={handleEdit}
             aria-label="Save edited todo"
             disabled={!title.trim()}
-            className={`px-4 py-2 rounded-md text-white font-serif ${
+            className={`px-12 py-2 rounded-md text-white font-serif ${
               title.trim()
-                ? "bg-purple-700 hover:bg-purple-800 px-12 py-2 rounded-md"
+                ? "bg-purple-700 hover:bg-purple-800"
                 : "bg-gray-300 cursor-not-allowed"
             }`}
           >
@@ -239,7 +239,7 @@ const TodoDetails = () => {
           </p>
           <button
             onClick={startEditing}
-            className="mt-4 px-4 py-2 text-white bg-purple-700 hover:bg-purple-800 px-12 py-2 rounded-md font-serif cursor-pointer"
+            className="mt-4 px-12 py-2 text-white bg-purple-700 hover:bg-purple-800 rounded-md font-serif cursor-pointer"
           >
             Edit Todo
           </button>
