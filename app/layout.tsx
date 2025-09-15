@@ -1,7 +1,6 @@
 '"use client";'
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
-// import "reset.css/reset.css";
 import "./globals.css";
 import { AppProviders } from "@/providers/appProviders";
 
