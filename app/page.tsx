@@ -2,6 +2,8 @@
 import { Box, Typography, Button, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/navbar";
+import { AuthButtons } from "@/components/authButtons";
+import { NextAuthTest } from "@/components/simpleAuthTest";
 
 import Head from "next/head";
 
@@ -26,6 +28,7 @@ const WelcomePage = () => {
     <>
       <DynamicHead />
       <Navbar />
+      {/* Main Content */}
       <Box
         sx={{
           height: "50vh",
@@ -60,7 +63,24 @@ const WelcomePage = () => {
           alignItems="center"
           sx={{ mt: 2 }}
         >
-          <Button
+             <Typography
+          variant="h5"
+          component="h3"
+          sx={{
+            fontFamily: "Playfair Display, serif",
+            fontWeight: "medium",
+            color: "#9f54d6",
+            marginBottom: 4,
+            background:
+              "linear-gradient(135deg,rgb(242, 88, 204) 0%,rgb(67, 8, 109) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+           Start Curating Your Todo List
+        </Typography>
+        <AuthButtons />
+          {/* <Button
             variant="contained"
             size="large"
             onClick={() => router.push("/todos")}
@@ -76,7 +96,7 @@ const WelcomePage = () => {
             }}
           >
             Start Curating Your Todo List
-          </Button>
+          </Button> */}
           <Button
             onClick={() => router.push("/test-error")}
             variant="outlined"
@@ -95,6 +115,7 @@ const WelcomePage = () => {
           </Button>
         </Stack>
       </Box>
+      <NextAuthTest />
     </>
   );
 };

@@ -8,7 +8,7 @@ const Navbar = () => {
     >
       {/* App Name or Logo */}
       <h1 className="text-xl font-bold font-sans text-[#7127b5]">Todo App</h1>
-
+      {/* <AuthButtons /> */}
       {/* Navigation Links */}
       <div>
         <Link

@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { ErrorBoundary } from "react-error-boundary";
 import { useState, ReactNode } from "react";
+import { AuthProvider } from "./authProvider";
 
 // Your MUI theme (same as your old App.tsx)
 const theme = createTheme({
@@ -30,7 +31,7 @@ function ErrorFallback({
   resetErrorBoundary: () => void;
 }) {
   const handleGoHome = () => {
-    window.location.href = '/';
+    window.location.href = "/";
   };
 
   return (
@@ -39,13 +40,14 @@ function ErrorFallback({
         <h2 className="text-3xl font-bold mb-4 font-serif bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent">
           Oops! Something went wrong
         </h2>
-        
+
         <p className="text-lg text-gray-600 mb-6 font-serif">
-          Don&apos;t worry, this happens sometimes. You can try refreshing the page or go back to the home page.
+          Don&apos;t worry, this happens sometimes. You can try refreshing the
+          page or go back to the home page.
         </p>
 
         {/* Show error details only in development */}
-        {process.env.NODE_ENV === 'development' && (
+        {process.env.NODE_ENV === "development" && (
           <details className="mb-6 text-left">
             <summary className="cursor-pointer text-sm font-semibold text-gray-700 mb-2">
               Error Details (Development)
@@ -56,7 +58,7 @@ function ErrorFallback({
             </pre>
           </details>
         )}
-        
+
         <div className="flex gap-4 justify-center">
           <button
             onClick={resetErrorBoundary}
@@ -64,7 +66,7 @@ function ErrorFallback({
           >
             Try Again
           </button>
-          
+
           <button
             onClick={handleGoHome}
             className="px-6 py-3 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors cursor-pointer font-serif font-semibold"
@@ -97,12 +99,14 @@ export function AppProviders({ children }: AppProvidersProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          {children}
-          <ReactQueryDevtools initialIsOpen={false} />
-        </ErrorBoundary>
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            {children}
+            <ReactQueryDevtools initialIsOpen={false} />
+          </ErrorBoundary>
+        </ThemeProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

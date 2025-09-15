@@ -1,3 +1,4 @@
+"use client";
 const TODOS_KEY = "todos";
 
 type Todo = {
