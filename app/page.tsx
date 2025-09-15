@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/navbar";
 import { AuthButtons } from "@/components/authButtons";
 import { NextAuthTest } from "@/components/simpleAuthTest";
+import {useSession} from "next-auth/react";
 
 import Head from "next/head";
 
@@ -20,10 +21,9 @@ function DynamicHead() {
 }
 
 const WelcomePage = () => {
-  // Use the useNavigate hook to navigate to the todos page
   const router = useRouter();
+  const { data: session } = useSession();
 
-  // Return the welcome page
   return (
     <>
       <DynamicHead />
@@ -63,40 +63,42 @@ const WelcomePage = () => {
           alignItems="center"
           sx={{ mt: 2 }}
         >
-             <Typography
-          variant="h5"
-          component="h3"
-          sx={{
-            fontFamily: "Playfair Display, serif",
-            fontWeight: "medium",
-            color: "#9f54d6",
-            marginBottom: 4,
-            background:
-              "linear-gradient(135deg,rgb(242, 88, 204) 0%,rgb(67, 8, 109) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-           Start Curating Your Todo List
-        </Typography>
-        <AuthButtons />
-          {/* <Button
-            variant="contained"
-            size="large"
-            onClick={() => router.push("/todos")}
+          <Typography
+            variant="h5"
+            component="h3"
             sx={{
-              bgcolor: "#7127b5",
-              "&:hover": {
-                bgcolor: "#551c89",
-              },
               fontFamily: "Playfair Display, serif",
-              fontSize: "1.1rem",
-              padding: "12px 24px",
-              textTransform: "none",
+              fontWeight: "medium",
+              color: "#9f54d6",
+              marginBottom: 4,
+              background:
+                "linear-gradient(135deg,rgb(242, 88, 204) 0%,rgb(67, 8, 109) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
             }}
           >
             Start Curating Your Todo List
-          </Button> */}
+          </Typography>
+          <AuthButtons />
+          {session && (
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => router.push("/todos")}
+              sx={{
+                bgcolor: "#7127b5",
+                "&:hover": {
+                  bgcolor: "#551c89",
+                },
+                fontFamily: "Playfair Display, serif",
+                fontSize: "1.1rem",
+                padding: "12px 24px",
+                textTransform: "none",
+              }}
+            >
+              Your Todo List
+            </Button>
+          )}
           <Button
             onClick={() => router.push("/test-error")}
             variant="outlined"

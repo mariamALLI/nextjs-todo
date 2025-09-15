@@ -1,7 +1,6 @@
 // import NextAuth, { SessionStrategy } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
-// import { Session } from "inspector/promises";
 
 // Extend the Session and User types to include 'id'
 declare module "next-auth" {
@@ -21,7 +20,9 @@ declare module "next-auth" {
   }
 }
 
-export const authOptions = {
+import type { AuthOptions } from "next-auth";
+
+export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -41,7 +42,7 @@ export const authOptions = {
   
   // Callbacks for custom behavior
   callbacks: {
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, user }) {
       // Include user data in JWT token
       if (user) {
         token.id = user.id;
