@@ -15,12 +15,7 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1",
   icons: {
     icon: "/icons8-tasklist-48.png",
-  },
-  openGraph: {
-    title: "Todo App",
-    description: "Start curating your todo list",
-    type: "website",
-  },
+  }
 };
 
 export default function RootLayout({
