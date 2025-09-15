@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Todo App
+
+This is a full-featured Todo application built with Next.js, React, TypeScript, and Bun. It supports social authentication (Google and GitHub) using NextAuth.js, and is deployed on Netlify.
+
+## Features
+
+- Add, edit, and delete todos
+- Pagination and error boundaries
+- Social sign-in with Google and GitHub
+- Protected routes for authenticated users
+- Responsive, modern UI with Material UI
+- Error and 404 test pages
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) (App Router)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Bun](https://bun.sh/) (package manager)
+- [NextAuth.js](https://next-auth.js.org/) (authentication)
+- [Material UI](https://mui.com/) (UI components)
+- [Netlify](https://www.netlify.com/) (deployment)
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+git clone https://github.com/<your-username>/nextjs-todo.git
+cd nextjs-todo
+```
+
+### 2. Install dependencies
+
+```bash
+bun install
+```
+
+### 3. Set up environment variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXTAUTH_SECRET=your-nextauth-secret
+NEXTAUTH_URL=http://localhost:3000
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# GitHub OAuth
+GITHUB_CLIENT_ID=your-github-client-id
+GITHUB_CLIENT_SECRET=your-github-client-secret
+```
+
+> **Note:** For local development, use your local OAuth credentials and callback URLs. For production (Netlify), use your production credentials and URLs.
+
+### 4. Run the development server
+
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Authentication Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Google:** Register your app in [Google Cloud Console](https://console.cloud.google.com/), add both local and production callback URLs.
+- **GitHub:** Register your app in [GitHub Developer Settings](https://github.com/settings/developers). You may need two apps: one for local, one for production.
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This app is deployed on Netlify with Bun:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push your code to GitHub (do not commit `.env.local`).
+2. Set all environment variables in Netlify’s dashboard.
+3. Deploy your site.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Folder Structure
 
-## Deploy on Vercel
+- `app/` — Next.js app router pages and API routes
+- `components/` — React components
+- `hooks/` — Custom React hooks
+- `lib/` — Auth configuration
+- `providers/` — Context providers
+- `public/` — Static assets
+- `utils/` — Utility functions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Security Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Never commit secrets or `.env.local` to your repository.**
+- Use Netlify’s environment variables for production secrets.
+
+## License
+
+MIT
